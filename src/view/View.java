@@ -162,7 +162,7 @@ public class View extends javax.swing.JFrame {
     }//GEN-LAST:event_txtManufacturerActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        String manufacturer = txtManufacturer.getText();
+        int manufacturer = Integer.parseInt(txtManufacturer.getText());
         float screen_size = Float.parseFloat(txtScreenSize.getText());
         float weight = Float.parseFloat(txtWeight.getText());
         String technology = txtTechnology.getText();
@@ -173,7 +173,9 @@ public class View extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowActionPerformed
-        controller.select();
+        TvsTableView tvsTableView = new TvsTableView();
+        tvsTableView.setVisible(true);
+        this.dispose();
         
     }//GEN-LAST:event_btnShowActionPerformed
 

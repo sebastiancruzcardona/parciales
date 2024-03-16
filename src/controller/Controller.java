@@ -4,7 +4,7 @@
  */
 package controller;
 
-import connection.ConexionMySQL;
+import connection.MySQLConnection;
 import exceptions.NullConnectionException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,14 +13,14 @@ import java.sql.ResultSet;
 
 /**
  *
- * @author Sebastián Cruz
+ * @authors Fabián Lugo - Sebastián Cruz
  */
 public class Controller {
 
-    public ConexionMySQL conexion = new ConexionMySQL();
+    public MySQLConnection conexion = new MySQLConnection();
 
     public Controller() {
-        this.conexion = new ConexionMySQL();
+        this.conexion = new MySQLConnection();
 
     }
 
@@ -34,10 +34,10 @@ public class Controller {
         throw new NullConnectionException();
     }
 
-    public void Insert(String manufacturer, float screen_size, float weight, String technology, String operative_system) {
-        String insertSQL = "INSERT INTO tvs (manufacturer,screen_size,weight,technology,operative_system) VALUES (?,?,?,?,?)";
+    public void Insert(int manufacturer_id, float screen_size, float weight, String technology, String operative_system) {
+        String insertSQL = "INSERT INTO tvs (manufacturer_id,screen_size,weight,technology,operative_system) VALUES (?,?,?,?,?)";
         try (Connection conn = connect(); PreparedStatement pstmt = conn.prepareStatement(insertSQL)) {
-            pstmt.setString(1, manufacturer);
+            pstmt.setInt(1, manufacturer_id);
             pstmt.setFloat(2, screen_size);
             pstmt.setFloat(3, weight);
             pstmt.setString(4, technology);
